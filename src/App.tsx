@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
-import { userSlice } from "./store/reducers/UserSlice";
 import { useAppDispatch, useTypedSelector } from "./hooks/redux";
+import { fetchUser } from "./store/reducers/ActionCreators";
 
 function App() {
     // вытаскиваем ActionCreatorы из слайса с помощью actions
-    const { increment } = userSlice.actions;
+
     const dispatch = useAppDispatch();
-    const { count } = useTypedSelector((state) => state.userReducer);
+    const { users } = useTypedSelector((state) => state.userReducer);
+
+    useEffect(() => {
+        dispatch(fetchUser());
+    }, []);
+
     return (
         <div className='App'>
-            <h1>{count}</h1>
-            <button onClick={() => dispatch(increment(10))}>incrtment</button>
+            {/* {JSON.stringify(users, null, 2)} */}
+            <div>
+                {users.map((user) => (
+                    <div>{user.name}</div>
+                ))}
+            </div>
         </div>
     );
 }
