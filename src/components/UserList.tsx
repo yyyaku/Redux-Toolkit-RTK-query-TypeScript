@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useTypedSelector } from "../hooks/redux";
-import { fetchUser } from "../store/reducers/ActionCreators";
+import { fetchUser } from "../store/action-creators/users";
 
 const UserList = () => {
     const { isLoading, error, users } = useTypedSelector(
