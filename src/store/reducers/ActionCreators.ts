@@ -1,6 +1,5 @@
 import axios from "axios";
 import { AppDispatch } from "../store";
-import { IUser } from "../../models/IUser";
 import { userSlice } from "./UserSlice";
 
 function getErrorMessage(error: unknown) {
