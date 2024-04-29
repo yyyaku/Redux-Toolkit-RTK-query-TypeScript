@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ITodo } from "../../models/ITodo";
 
 interface TodoState {
@@ -24,12 +24,12 @@ export const todoSlice = createSlice({
         todosFetching(state) {
             state.isLoading = true;
         },
-        todosFetchingSucces(state, actions) {
+        todosFetchingSucces(state, actions: PayloadAction<ITodo[]>) {
             state.isLoading = false;
             state.error = "";
             state.todos = actions.payload;
         },
-        todosFetchingError(state, actions) {
+        todosFetchingError(state, actions: PayloadAction<string>) {
             state.isLoading = false;
             state.error = actions.payload;
             state.todos = [];

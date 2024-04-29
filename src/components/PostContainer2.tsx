@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { postApi } from "../service/PostService";
 import PostItem from "./PostItem";
 
@@ -8,11 +8,17 @@ const PostContainer = () => {
         data: posts,
         isLoading,
         error,
-    } = postApi.useFetchAllPostsQuery(limit, {
-        pollingInterval: 1000,
-    });
+        refetch,
+    } = postApi.useFetchAllPostsQuery(limit);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLimit(5);
+        }, 3000);
+    }, []);
     return (
         <div className='posts'>
+            <button onClick={refetch}>refetch</button>
             {isLoading && <h1>Идет загрузка...</h1>}
             {error && <h1>Ошибка при загрузки</h1>}
             {posts && posts.map((post) => <PostItem post={post}></PostItem>)}
