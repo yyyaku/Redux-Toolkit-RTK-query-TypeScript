@@ -1,12 +1,14 @@
 import "./App.css";
-import TodoList from "./components/TodoList";
-import UserList from "./components/UserList";
+import PostContainer from "./components/PostContainer";
+import PostContainer2 from "./components/PostContainer2";
 
 function App() {
     return (
         <div className='App'>
-            <UserList></UserList>
-            <TodoList></TodoList>
+            <div style={{ display: "flex" }}>
+                <PostContainer></PostContainer>
+                <PostContainer2></PostContainer2>
+            </div>
         </div>
     );
 }
